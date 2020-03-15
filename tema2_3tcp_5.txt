@@ -1,0 +1,50 @@
+C:\Users\Miki\Documents\GitHub\computer-networks\capitolul2>docker-compose exec rt1 bash -c "tcpdump -Snnt tcp"
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
+
+Send 0 expected 1
+IP 172.111.0.2.60292 > 172.111.0.1.10000: Flags [S], seq 1068753695, win 29200, options [mss 1460,sackOK,TS val 835123933 ecr 0,nop,wscale 7], length 0
+IP 172.111.0.1.10000 > 172.111.0.2.60292: Flags [S.], seq 3938520259, ack 1068753696, win 28960, options [mss 1460,sackOK,TS val 1971996386 ecr 835123933,nop,wscale 7], length 0
+IP 172.111.0.2.60292 > 172.111.0.1.10000: Flags [.], ack 3938520260, win 229, options [nop,nop,TS val 835123933 ecr 1971996386], length 0
+
+IP 172.111.0.2.60292 > 172.111.0.1.10000: Flags [F.], seq 1068753696, ack 3938520260, win 229, options [nop,nop,TS val 835126942 ecr 1971996386], length 0
+IP 172.111.0.1.10000 > 172.111.0.2.60292: Flags [.], ack 1068753697, win 227, options [nop,nop,TS val 1971999403 ecr 835126942], length 0
+
+IP 172.111.0.1.10000 > 172.111.0.2.60292: Flags [F.], seq 3938520260, ack 1068753697, win 227, options [nop,nop,TS val 1972001403 ecr 835126942], length 0
+IP 172.111.0.2.60292 > 172.111.0.1.10000: Flags [.], ack 3938520261, win 229, options [nop,nop,TS val 835128950 ecr 1972001403], length 0
+
+Send 1 expecte 1
+IP 172.111.0.2.60294 > 172.111.0.1.10000: Flags [S], seq 1526734854, win 29200, options [mss 1460,sackOK,TS val 835152867 ecr 0,nop,wscale 7], length 0
+IP 172.111.0.1.10000 > 172.111.0.2.60294: Flags [S.], seq 4138783454, ack 1526734855, win 28960, options [mss 1460,sackOK,TS val 1972025320 ecr 835152867,nop,wscale 7], length 0
+IP 172.111.0.2.60294 > 172.111.0.1.10000: Flags [.], ack 4138783455, win 229, options [nop,nop,TS val 835152867 ecr 1972025320], length 0
+
+IP 172.111.0.2.60294 > 172.111.0.1.10000: Flags [P.], seq 1526734855:1526734856, ack 4138783455, win 229, options [nop,nop,TS val 835155874 ecr 1972025320], length 1
+IP 172.111.0.1.10000 > 172.111.0.2.60294: Flags [.], ack 1526734856, win 227, options [nop,nop,TS val 1972028327 ecr 835155874], length 0
+IP 172.111.0.2.60294 > 172.111.0.1.10000: Flags [F.], seq 1526734856, ack 4138783455, win 229, options [nop,nop,TS val 835155875 ecr 1972028327], length 0
+IP 172.111.0.1.10000 > 172.111.0.2.60294: Flags [.], ack 1526734857, win 227, options [nop,nop,TS val 1972028368 ecr 835155875], length 0
+
+IP 172.111.0.1.10000 > 172.111.0.2.60294: Flags [F.], seq 4138783455, ack 1526734857, win 227, options [nop,nop,TS val 1972030333 ecr 835155875], length 0
+IP 172.111.0.2.60294 > 172.111.0.1.10000: Flags [.], ack 4138783456, win 229, options [nop,nop,TS val 835157880 ecr 1972030333], length 0
+
+Send 0 expected 0
+IP 172.111.0.2.60296 > 172.111.0.1.10000: Flags [S], seq 466902765, win 29200, options [mss 1460,sackOK,TS val 835232148 ecr 0,nop,wscale 7], length 0
+IP 172.111.0.1.10000 > 172.111.0.2.60296: Flags [S.], seq 3215705034, ack 466902766, win 28960, options [mss 1460,sackOK,TS val 1972104601 ecr 835232148,nop,wscale 7], length 0
+IP 172.111.0.2.60296 > 172.111.0.1.10000: Flags [.], ack 3215705035, win 229, options [nop,nop,TS val 835232148 ecr 1972104601], length 0
+
+IP 172.111.0.2.60296 > 172.111.0.1.10000: Flags [F.], seq 466902766, ack 3215705035, win 229, options [nop,nop,TS val 835235153 ecr 1972104601], length 0
+IP 172.111.0.1.10000 > 172.111.0.2.60296: Flags [.], ack 466902767, win 227, options [nop,nop,TS val 1972107607 ecr 835235153], length 0
+
+IP 172.111.0.1.10000 > 172.111.0.2.60296: Flags [F.], seq 3215705035, ack 466902767, win 227, options [nop,nop,TS val 1972108613 ecr 835235153], length 0
+IP 172.111.0.2.60296 > 172.111.0.1.10000: Flags [.], ack 3215705036, win 229, options [nop,nop,TS val 835236160 ecr 1972108613], length 0
+
+Send 1 expected 0
+IP 172.111.0.2.60298 > 172.111.0.1.10000: Flags [S], seq 1860272176, win 29200, options [mss 1460,sackOK,TS val 835268865 ecr 0,nop,wscale 7], length 0
+IP 172.111.0.1.10000 > 172.111.0.2.60298: Flags [S.], seq 884117820, ack 1860272177, win 28960, options [mss 1460,sackOK,TS val 1972141318 ecr 835268865,nop,wscale 7], length 0
+IP 172.111.0.2.60298 > 172.111.0.1.10000: Flags [.], ack 884117821, win 229, options [nop,nop,TS val 835268865 ecr 1972141318], length 0
+
+IP 172.111.0.2.60298 > 172.111.0.1.10000: Flags [P.], seq 1860272177:1860272178, ack 884117821, win 229, options [nop,nop,TS val 835271871 ecr 1972141318], length 1
+IP 172.111.0.1.10000 > 172.111.0.2.60298: Flags [.], ack 1860272178, win 227, options [nop,nop,TS val 1972144325 ecr 835271871], length 0
+IP 172.111.0.2.60298 > 172.111.0.1.10000: Flags [F.], seq 1860272178, ack 884117821, win 229, options [nop,nop,TS val 835271872 ecr 1972144325], length 0
+IP 172.111.0.1.10000 > 172.111.0.2.60298: Flags [.], ack 1860272179, win 227, options [nop,nop,TS val 1972144366 ecr 835271872], length 0
+
+IP 172.111.0.1.10000 > 172.111.0.2.60298: Flags [R.], seq 884117821, ack 1860272179, win 227, options [nop,nop,TS val 1972145330 ecr 835271872], length 0
