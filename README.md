@@ -113,6 +113,9 @@ server_address = (adresa, port)
 ---
 
 7. Containerul rt1 este definit în [docker-compose.yml](https://github.com/senisioi/computer-networks/blob/2020/capitolul2/docker-compose.yml) cu redirecționare pentru portul 8001. Modificați serverul și clientul în așa fel încât să îl puteți executa pe containerul rt1 și să puteți să vă conectați la el de pe calculatorul vostru sau de pe rețeaua pe care se află calculatorul vostru.
+
+Modificam portul din .yml: ports: - "8080:8001/udp"
+
 ``` python3 (docker-compose exec rt1 bash)
 # Receiver - rt1 
 import socket
@@ -162,5 +165,30 @@ Printscreen pentru 2, 3, si 4
 
 5. Mai jos sunt explicați pașii din 3-way handshake captați de tcpdump și trimiterea unui singur byte de la client la server. Salvați un exemplu de tcpdump asemănător care conține și partea de [finalizare a conexiunii TCP](http://www.tcpipguide.com/free/t_TCPConnectionTermination-2.htm). Sfat: Modificați clientul să trimită un singur byte fără să facă recv. Modificați serverul să citească doar un singur byte cu recv(1) și să nu facă send. Reporniți serverul din rt1. Deschideți un al treilea terminal, tot în capitolul2 și rulați tcpdump: `docker-compose exec rt1 bash -c "tcpdump -Snnt tcp"` pentru a porni tcpdump pe rt1. 
 ```
-Output de tcpdump unde are loc finalizarea conexiunii cu explicatii in scris ca in capitolul2: ce sequence number, ce acknowledgement number, ce flags etc.
+-- Se incepe 3-way handshake --
+IP 172.111.0.2.60294 > 172.111.0.1.10000: Flags [S], seq 1526734854, win 29200, options [mss 1460,sackOK,TS val 835152867 ecr 0,nop,wscale 7], length 0
+S-a trimis SYN catre server (un client vrea sa inceapa o comunicatie cu serverul)
+IP 172.111.0.1.10000 > 172.111.0.2.60294: Flags [S.], seq 4138783454, ack 1526734855, win 28960, options [mss 1460,sackOK,TS val 1972025320 ecr 835152867,nop,wscale 7], length 0
+S-a trimis SYN si ACK (serverul accepta comunicatia si ii spune clientului asta)
+IP 172.111.0.2.60294 > 172.111.0.1.10000: Flags [.], ack 4138783455, win 229, options [nop,nop,TS val 835152867 ecr 1972025320], length 0
+S-a trimis ACK (clientul ii transmite serverului ca a inteles ca serverul a acceptat conexiunea)
+-- se termina 3-way handshake = conexiune acceptata --
+
+-- se transmit datele (1 byte) --
+IP 172.111.0.2.60294 > 172.111.0.1.10000: Flags [P.], seq 1526734855:1526734856, ack 4138783455, win 229, options [nop,nop,TS val 835155874 ecr 1972025320], length 1
+clientul transmite catre server 1 byte
+IP 172.111.0.1.10000 > 172.111.0.2.60294: Flags [.], ack 1526734856, win 227, options [nop,nop,TS val 1972028327 ecr 835155874], length 0
+serverul ii spune clientului cati bytes a primit
+IP 172.111.0.2.60294 > 172.111.0.1.10000: Flags [F.], seq 1526734856, ack 4138783455, win 229, options [nop,nop,TS val 835155875 ecr 1972028327], length 0
+clientul ii tansmite serverului ca toti bytes au fost ca toti bytes au fost trimisi, asa ca incheie transferul
+IP 172.111.0.1.10000 > 172.111.0.2.60294: Flags [.], ack 1526734857, win 227, options [nop,nop,TS val 1972028368 ecr 835155875], length 0
+severul ii transmite clientului ca a inteles ca a primit toti bytes si transferul s+a incheiat
+-- toate datele trimise au fost primite de server --
+
+-- clientul initializeaza terminarea conexiunii cu serverul --
+IP 172.111.0.1.10000 > 172.111.0.2.60294: Flags [F.], seq 4138783455, ack 1526734857, win 227, options [nop,nop,TS val 1972030333 ecr 835155875], length 0
+clientul a trimis ACK si FIN (clientul vrea sa incheie conexiunea cu serverul)
+IP 172.111.0.2.60294 > 172.111.0.1.10000: Flags [.], ack 4138783456, win 229, options [nop,nop,TS val 835157880 ecr 1972030333], length 0
+serverul trimite ACK (serverul ii trimite clentului ca a inteles ca s+a terminat comexiunea)
+-- conexiune terminata --
 ```
